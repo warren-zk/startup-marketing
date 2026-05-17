@@ -10,8 +10,7 @@ import { useAuth } from "@/lib/auth-context"
 const navLinks = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Editor", href: "/editor" },
+  { label: "Contact", href: "/contact" },
 ]
 
 function UserMenu() {
@@ -72,7 +71,7 @@ function UserMenu() {
               className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
             >
               <Sparkles className="w-4 h-4" />
-              Blog Editor
+              Generate Blog
             </Link>
             <div className="border-t border-white/10 mt-1 pt-1">
               <button
@@ -193,6 +192,13 @@ export default function Navbar() {
                   </>
                 ) : (
                   <>
+                    <Link
+                      href="/editor"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center gap-2 py-2.5 rounded-xl glass text-white text-sm"
+                    >
+                      <Sparkles className="w-4 h-4" /> Generate Blog
+                    </Link>
                     <Link
                       href="/login"
                       onClick={() => setOpen(false)}

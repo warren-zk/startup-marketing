@@ -18,7 +18,7 @@ const navItems = [
   { label: "Home", href: "/", icon: Home },
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Articles", href: "/dashboard#articles", icon: FileText },
-  { label: "Editor", href: "/editor", icon: FileEdit },
+  { label: "Generate Blog", href: "/editor", icon: FileEdit },
   { label: "Categories", href: "/dashboard#categories", icon: Tag },
   { label: "Analytics", href: "/dashboard#analytics", icon: BarChart3 },
 ]

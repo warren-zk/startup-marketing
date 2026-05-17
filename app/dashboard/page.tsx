@@ -2,6 +2,8 @@
 
 export const dynamic = "force-dynamic"
 
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 import DashboardSidebar from "@/components/layout/DashboardSidebar"
 import AnalyticsCards from "@/components/dashboard/AnalyticsCards"
 import ArticlesList from "@/components/dashboard/ArticlesList"
@@ -9,10 +11,27 @@ import CategoryManager from "@/components/dashboard/CategoryManager"
 import DomainOverview from "@/components/dashboard/DomainOverview"
 import { useArticles } from "@/hooks/useArticles"
 import { useCategories } from "@/hooks/useCategories"
+import { useAuth } from "@/lib/auth-context"
 
 export default function DashboardPage() {
+  const { user, loading: authLoading } = useAuth()
+  const router = useRouter()
   const { articles, loading: articlesLoading } = useArticles()
   const { categories, loading: categoriesLoading } = useCategories()
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.replace("/login")
+    }
+  }, [user, authLoading, router])
+
+  if (authLoading || !user) {
+    return (
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full border-2 border-violet-500 border-t-transparent animate-spin" />
+      </div>
+    )
+  }
 
   return (
     <div className="flex min-h-screen bg-zinc-950">
