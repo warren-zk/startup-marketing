@@ -10,7 +10,8 @@ import { useAuth } from "@/lib/auth-context"
 const navLinks = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Contact", href: "/contact" },
+  { label: "Generate Blog", href: "/editor" },
+  { label: "Contact Us", href: "/contact" },
 ]
 
 function UserMenu() {
