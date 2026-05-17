@@ -34,13 +34,16 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center shadow-lg shadow-violet-500/30">
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+              <div className="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-violet-500/40 shrink-0">
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
-              <span className="font-semibold text-white text-sm">
-                SEO <span className="gradient-text">Master</span>
-              </span>
+              <div className="flex flex-col leading-none">
+                <span className="font-bold text-base tracking-tight text-white">
+                  SEO <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Master</span>
+                </span>
+                <span className="text-[9px] text-zinc-500 font-medium tracking-widest uppercase">AI Blog Platform</span>
+              </div>
             </Link>
             <p className="text-zinc-500 text-sm leading-relaxed">
               Your first step to marketing. AI-powered tools for modern startups.

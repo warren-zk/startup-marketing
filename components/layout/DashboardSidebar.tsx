@@ -31,13 +31,16 @@ export default function DashboardSidebar() {
       {/* Desktop sidebar */}
       <aside className="hidden md:flex flex-col w-60 min-h-screen border-r border-white/10 bg-zinc-950 p-4 shrink-0">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 mb-8 px-2">
-          <div className="w-7 h-7 rounded-lg gradient-bg flex items-center justify-center shadow-lg shadow-violet-500/30">
-            <Sparkles className="w-3.5 h-3.5 text-white" />
+        <Link href="/" className="flex items-center gap-2.5 mb-8 px-2 group">
+          <div className="w-8 h-8 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-violet-500/40 shrink-0">
+            <Sparkles className="w-4 h-4 text-white" />
           </div>
-          <span className="font-semibold text-white text-sm">
-            SEO <span className="gradient-text">Master</span>
-          </span>
+          <div className="flex flex-col leading-none">
+            <span className="font-bold text-sm tracking-tight text-white">
+              SEO <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Master</span>
+            </span>
+            <span className="text-[9px] text-zinc-500 font-medium tracking-widest uppercase">AI Blog Platform</span>
+          </div>
         </Link>
 
         <nav className="flex flex-col gap-1 flex-1">

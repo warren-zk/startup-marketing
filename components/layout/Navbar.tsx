@@ -19,13 +19,17 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-zinc-950/80 border-b border-white/10">
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center shadow-lg shadow-violet-500/30">
-            <Sparkles className="w-4 h-4 text-white" />
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="relative w-9 h-9 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-violet-500/40 group-hover:shadow-violet-500/60 transition-shadow">
+            <Sparkles className="w-4.5 h-4.5 text-white drop-shadow" />
+            <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-          <span className="font-semibold text-white text-sm">
-            SEO <span className="gradient-text">Master</span>
-          </span>
+          <div className="flex flex-col leading-none">
+            <span className="font-bold text-base tracking-tight text-white">
+              SEO <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Master</span>
+            </span>
+            <span className="text-[10px] text-zinc-500 font-medium tracking-widest uppercase">AI Blog Platform</span>
+          </div>
         </Link>
 
         {/* Desktop links */}
