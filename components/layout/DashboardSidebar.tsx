@@ -39,7 +39,7 @@ export default function DashboardSidebar() {
             <span className="font-bold text-sm tracking-tight text-white">
               SEO <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Master</span>
             </span>
-            <span className="text-[9px] text-zinc-500 font-medium tracking-widest uppercase">AI Blog Platform</span>
+            <span className="text-[9px] text-zinc-500 font-medium tracking-widest uppercase">AI SEO Platform</span>
           </div>
         </Link>
 
