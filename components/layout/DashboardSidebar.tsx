@@ -36,7 +36,7 @@ export default function DashboardSidebar() {
             <Sparkles className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="font-semibold text-white text-sm">
-            Startup <span className="gradient-text">Marketing</span>
+            SEO <span className="gradient-text">Master</span>
           </span>
         </Link>
 

@@ -37,7 +37,7 @@ export default function CTABannerSection() {
               startup with SEO?
             </h2>
             <p className="text-white/70 text-lg mb-10 max-w-xl mx-auto">
-              Join thousands of founders using Startup Marketing to generate
+              Join thousands of founders using SEO Master to generate
               optimized content and dominate search rankings.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

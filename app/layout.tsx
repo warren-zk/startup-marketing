@@ -5,12 +5,12 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
-  title: "Startup Marketing — Your First Step to Marketing",
+  title: "SEO Master — Your First Step to Marketing",
   description:
     "AI-powered SEO blog generator, analytics dashboard, and marketing tools for startups. Create optimized content in seconds.",
   keywords: "startup marketing, SEO, blog generator, AI content, digital marketing",
   openGraph: {
-    title: "Startup Marketing",
+    title: "SEO Master",
     description: "Your First Step to Marketing",
     type: "website",
   },

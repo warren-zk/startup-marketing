@@ -48,7 +48,7 @@ export default function TestimonialsSection() {
             Loved by <span className="gradient-text">founders</span>
           </h2>
           <p className="text-zinc-400 text-lg">
-            Thousands of startups trust Startup Marketing to grow their organic reach.
+            Thousands of startups trust SEO Master to grow their organic reach.
           </p>
         </motion.div>
 

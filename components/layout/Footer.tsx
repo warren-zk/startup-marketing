@@ -39,7 +39,7 @@ export default function Footer() {
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
               <span className="font-semibold text-white text-sm">
-                Startup <span className="gradient-text">Marketing</span>
+                SEO <span className="gradient-text">Master</span>
               </span>
             </Link>
             <p className="text-zinc-500 text-sm leading-relaxed">
@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-zinc-600 text-sm">
-            © {new Date().getFullYear()} Startup Marketing. All rights reserved.
+            © {new Date().getFullYear()} SEO Master. All rights reserved.
           </p>
           <p className="text-zinc-600 text-sm">
             Your First Step to Marketing
