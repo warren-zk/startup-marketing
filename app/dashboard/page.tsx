@@ -6,6 +6,7 @@ import DashboardSidebar from "@/components/layout/DashboardSidebar"
 import AnalyticsCards from "@/components/dashboard/AnalyticsCards"
 import ArticlesList from "@/components/dashboard/ArticlesList"
 import CategoryManager from "@/components/dashboard/CategoryManager"
+import DomainOverview from "@/components/dashboard/DomainOverview"
 import { useArticles } from "@/hooks/useArticles"
 import { useCategories } from "@/hooks/useCategories"
 
@@ -25,6 +26,14 @@ export default function DashboardPage() {
         </div>
 
         <div className="p-6 space-y-6 max-w-6xl">
+          {/* Domain SEO Overview */}
+          <section id="domain">
+            <h2 className="text-zinc-500 font-medium mb-4 text-sm uppercase tracking-wider">
+              Domain Analysis
+            </h2>
+            <DomainOverview />
+          </section>
+
           {/* Analytics */}
           <section id="analytics">
             <h2 className="text-white font-medium mb-4 text-sm uppercase tracking-wider text-zinc-500">

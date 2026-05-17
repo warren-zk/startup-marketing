@@ -1,9 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Sparkles, Menu, X, LayoutDashboard, FileEdit } from "lucide-react"
+import { Sparkles, Menu, X, LayoutDashboard, LogIn, UserPlus, LogOut, ChevronDown, User } from "lucide-react"
+import { useAuth } from "@/lib/auth-context"
 
 const navLinks = [
   { label: "Features", href: "/#features" },
@@ -12,8 +14,85 @@ const navLinks = [
   { label: "Editor", href: "/editor" },
 ]
 
+function UserMenu() {
+  const { user, signOut } = useAuth()
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [])
+
+  const initial = user?.email?.[0]?.toUpperCase() ?? "U"
+
+  const handleSignOut = async () => {
+    await signOut()
+    router.push("/")
+    setOpen(false)
+  }
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 px-3 py-2 rounded-xl glass text-sm text-zinc-300 hover:text-white transition-colors"
+      >
+        <div className="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-white text-xs font-bold shrink-0">
+          {initial}
+        </div>
+        <span className="hidden sm:block max-w-[120px] truncate text-xs">{user?.email}</span>
+        <ChevronDown className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 top-full mt-2 w-48 glass rounded-xl py-1 z-50 shadow-xl shadow-black/40"
+          >
+            <Link
+              href="/dashboard"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              Dashboard
+            </Link>
+            <Link
+              href="/editor"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <Sparkles className="w-4 h-4" />
+              Blog Editor
+            </Link>
+            <div className="border-t border-white/10 mt-1 pt-1">
+              <button
+                onClick={handleSignOut}
+                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/5 transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { user, loading } = useAuth()
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-zinc-950/80 border-b border-white/10">
@@ -36,32 +115,37 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-sm text-zinc-400 hover:text-white transition-colors duration-200"
-              >
+              <Link href={link.href} className="text-sm text-zinc-400 hover:text-white transition-colors duration-200">
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* Desktop CTA */}
+        {/* Desktop auth area */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/dashboard"
-            className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"
-          >
-            <LayoutDashboard className="w-4 h-4" />
-            Dashboard
-          </Link>
-          <Link
-            href="/editor"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl gradient-bg text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-lg shadow-violet-500/25"
-          >
-            <FileEdit className="w-4 h-4" />
-            Generate Blog
-          </Link>
+          {loading ? (
+            <div className="w-24 h-8 rounded-xl bg-white/5 animate-pulse" />
+          ) : user ? (
+            <UserMenu />
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors"
+              >
+                <LogIn className="w-4 h-4" />
+                Log In
+              </Link>
+              <Link
+                href="/signup"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl gradient-bg text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-lg shadow-violet-500/25"
+              >
+                <UserPlus className="w-4 h-4" />
+                Sign Up Free
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile hamburger */}
@@ -95,15 +179,36 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/editor"
-                  className="flex items-center justify-center gap-2 py-2.5 rounded-xl gradient-bg text-white text-sm font-medium"
-                  onClick={() => setOpen(false)}
-                >
-                  <Sparkles className="w-4 h-4" />
-                  Generate Blog
-                </Link>
+              <li className="border-t border-white/10 pt-4 flex flex-col gap-2">
+                {user ? (
+                  <>
+                    <p className="text-zinc-600 text-xs truncate">{user.email}</p>
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-2 py-2 text-sm text-zinc-300"
+                    >
+                      <LayoutDashboard className="w-4 h-4" /> Dashboard
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center gap-2 py-2.5 rounded-xl glass text-white text-sm"
+                    >
+                      <LogIn className="w-4 h-4" /> Log In
+                    </Link>
+                    <Link
+                      href="/signup"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center gap-2 py-2.5 rounded-xl gradient-bg text-white text-sm font-medium"
+                    >
+                      <UserPlus className="w-4 h-4" /> Sign Up Free
+                    </Link>
+                  </>
+                )}
               </li>
             </ul>
           </motion.div>
